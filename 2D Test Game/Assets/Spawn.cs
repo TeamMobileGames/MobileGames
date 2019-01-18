@@ -9,6 +9,9 @@ public class Spawn : MonoBehaviour
     public int spawnSize = 1;
     public GameObject monster;
 
+    [Range(0.00f,1f)]
+    public float chanceSecondSpawn;
+
 
     void OnEnable()
     {
@@ -24,14 +27,23 @@ public class Spawn : MonoBehaviour
     {
         for (int i = 0; i < spawnCount; i++)
         {
-            Vector2 spawnPosition = GetSpawnPosition();
-
-            Quaternion spawnRotation = new Quaternion();
-            spawnRotation.eulerAngles = new Vector2(0.0f, 0.0f);
-            if (spawnPosition != Vector2.zero)
+            float tmp = Random.Range(0.01f, 1f);
+            SpawnInstantiate();
+            if(tmp < chanceSecondSpawn)
             {
-                Instantiate(monster, spawnPosition, spawnRotation);
+                SpawnInstantiate();
             }
+        }
+    }
+
+    void SpawnInstantiate()
+    {
+        Vector2 spawnPosition = GetSpawnPosition();
+        Quaternion spawnRotation = new Quaternion();
+        spawnRotation.eulerAngles = new Vector2(0.0f, 0.0f);
+        if (spawnPosition != Vector2.zero)
+        {
+            Instantiate(monster, spawnPosition, spawnRotation);
         }
     }
 

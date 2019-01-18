@@ -349,8 +349,8 @@ MonoBehaviour:
   joystickShoot: {fileID: 976290329}
   bulletPrefab: {fileID: 50447121071175916, guid: 111b402cfeda31f499916179c21b4443,
     type: 2}
-  shootCoolDown: 0.02
-  runSpeed: 5
+  shootCoolDown: 0.1
+  runSpeed: 4
   animatorCharacter: {fileID: 1973927975}
   animatorGun: {fileID: 1163542444}
 --- !u!61 &615322997
@@ -633,6 +633,7 @@ MonoBehaviour:
   spawnCount: 1
   spawnSize: 10
   monster: {fileID: 1420426264155488, guid: 55fd403c24ec78448adda44736421a00, type: 2}
+  chanceSecondSpawn: 0.3
 --- !u!4 &833661220
 Transform:
   m_ObjectHideFlags: 0
