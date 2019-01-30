@@ -7,22 +7,15 @@ using UnityEngine.UI;
 
 public class LoadLevel1Touch : MonoBehaviour {
 
-    public GameObject loadingImage;
     public int scene;
 
-    bool touchStatus = false;
-    private void Update()
-    {
-        touchPlay();
-    }
-    public void touchPlay()
+  
+
+    public void touchPlay(int scene)
     {
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
-
-            touchStatus = true;
-            Debug.Log("will load");
-
+           // Debug.Log("will load");
             SceneManager.LoadScene(scene);
         }
     }

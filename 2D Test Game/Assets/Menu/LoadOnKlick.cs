@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class LoadOnKlick : MonoBehaviour {
 
     public GameObject loadingImage;
-
+    public int scene;
 
     private void Update()
     {
@@ -16,7 +16,7 @@ public class LoadOnKlick : MonoBehaviour {
     public void LoadScene(int level)
     {
         loadingImage.SetActive(true);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(scene);
     }
 
 }
