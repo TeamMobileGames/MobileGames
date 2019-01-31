@@ -6,17 +6,18 @@ using UnityEngine.SceneManagement;
 public class LoadOnKlick : MonoBehaviour {
 
     public GameObject loadingImage;
-    public int scene;
+   //public int scene;
 
     private void Update()
     {
 
     }
 
-    public void LoadScene(int level)
+    public void LoadScene()
     {
         loadingImage.SetActive(true);
-        SceneManager.LoadScene(scene);
+        SceneManager.LoadScene(1);
+        Debug.Log("Level Load");
     }
 
 }
