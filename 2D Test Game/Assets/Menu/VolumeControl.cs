@@ -7,16 +7,17 @@ public class VolumeControl : MonoBehaviour
 {
 
     public Sprite VolumeOn, VolumeOff;
-    public SpriteRenderer spriteRenderer;
-    
+    private Image image;
+    private bool isOn;
     
     // Use this for initialization
 
     void Start()
     {
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        image = gameObject.GetComponent<Image>();
         //if Volume is not 50 it's false
-        SetVolume(PlayerPrefs.GetInt("volume", 50) != 50 ? false : true);
+        //SetVolume(PlayerPrefs.GetInt("volume", 50) != 50 ? true : false);
+        SetVolume();
     }
 
     // Update is called once per frame
@@ -26,20 +27,23 @@ public class VolumeControl : MonoBehaviour
         if (isTouched())
         {
             //Set the Volume to 50 if it doesn't exist, if it's not equal 50 it's true
-            SetVolume(PlayerPrefs.GetInt("volume", 50) != 50 ? true : false);
+            //SetVolume(PlayerPrefs.GetInt("volume", 50) != 50 ? true : false);
+            SetVolume();
         }
     }
 
-    private void SetVolume(bool isOn)
+    private void SetVolume()
     {
-        if (isOn)
+        if (!isOn)
         {
-            spriteRenderer.sprite = VolumeOn;
+            isOn = true;
+            image.sprite = VolumeOn;
             PlayerPrefs.GetInt("volume", 50);
         }
         else
         {
-            spriteRenderer.sprite = VolumeOff;
+            isOn = false;
+            image.sprite = VolumeOff;
             PlayerPrefs.GetInt("volume", 0);
         }
     }
