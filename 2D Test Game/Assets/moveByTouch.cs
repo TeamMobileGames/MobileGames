@@ -67,14 +67,13 @@ public class moveByTouch : MonoBehaviour {
 
     }
 	
-	// Update is called once per frame
 	void Update () {
 
         timeTillNextShoot -= Time.deltaTime;
 
        // animatorCharacter.SetFloat("angel", 0);
        // animatorGun.SetFloat("angel", 0);
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 || Input.GetMouseButtonDown(1))
         {
            
             horizontalMove = joystickWalk.Horizontal * runSpeed;

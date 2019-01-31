@@ -122,6 +122,7 @@ public class slime : MonoBehaviour {
     private void dead()
     {
         if (!isDead) {
+            EventManager.TriggerEvent("SlimeDied");
             Drop();
             isDead = true;
             EventManager.TriggerEvent("Spawn");

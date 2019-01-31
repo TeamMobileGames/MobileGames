@@ -2,12 +2,15 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
     private int coin = 0;
+    private int score = 0;
     public Sound[] sounds;
-    public Text CoinAmmount;
+    public Text coinText;
+    public Text scoreText;
 
     void Awake()
     {
@@ -33,12 +36,16 @@ public class GameManager : MonoBehaviour {
     {
         EventManager.StartListening("CoinPicked", CoinPicked);
         EventManager.StartListening("FlamethrowerShoot", FlamethrowerShootSound);
+        EventManager.StartListening("SlimeDied", SlimeDied);
+        EventManager.StartListening("GameOver", GameOver);
     }
 
     void OnDisable()
     {
         EventManager.StopListening("CoinPicked", CoinPicked);
         EventManager.StopListening("FlamethrowerShoot", FlamethrowerShootSound);
+        EventManager.StopListening("SlimeDied", SlimeDied);
+        EventManager.StopListening("GameOver", GameOver);
     }
 
     public void Play(string name)
@@ -55,7 +62,20 @@ public class GameManager : MonoBehaviour {
     void CoinPicked()
     {
         coin++;
-        CoinAmmount.text = "" + coin;
+        coinText.text = "" + coin;
         Play("CoinSound");
+    }
+
+    void SlimeDied()
+    {
+        score++;
+        scoreText.text = "Score: " + score;
+    }
+
+    void GameOver()
+    {
+        score = 0;
+        scoreText.text = "Score: " + score;
+        SceneManager.LoadScene("Menu");
     }
 }
