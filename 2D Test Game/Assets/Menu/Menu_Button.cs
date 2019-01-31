@@ -7,6 +7,7 @@ public class Menu_Button : MonoBehaviour
 
     public GameObject MenuPanel;
     public GameObject ScorePanel;
+    public GameObject OptionPanel;
 
     // Use this for initialization
     void Start()
@@ -14,6 +15,7 @@ public class Menu_Button : MonoBehaviour
 
         MenuPanel.SetActive(true);
         ScorePanel.SetActive(false);
+        OptionPanel.SetActive(false);
 
 
     }
@@ -23,11 +25,18 @@ public class Menu_Button : MonoBehaviour
     {
     }
 
+    public void ShowOptionPanel()
+    {
+        MenuPanel.SetActive(false);
+        ScorePanel.SetActive(false);
+        OptionPanel.SetActive(true);
 
+    }
     public void ShowScorePanel()
     {
         MenuPanel.SetActive(false);
         ScorePanel.SetActive(true);
+        OptionPanel.SetActive(false);
     }
     // Update is called once per frame 
 
@@ -35,6 +44,7 @@ public class Menu_Button : MonoBehaviour
     {
         MenuPanel.SetActive(true);
         ScorePanel.SetActive(false);
+        OptionPanel.SetActive(false);
 
     }
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
 
 
 public class LoadLevel1Touch : MonoBehaviour {
@@ -15,7 +15,8 @@ public class LoadLevel1Touch : MonoBehaviour {
     {
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
-           // Debug.Log("will load");
+
+            // Debug.Log("will load");
             SceneManager.LoadScene(scene);
         }
     }
