@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
 
     private int coin = 0;
     private int score = 0;
+    public int upgradePrice;
     public Sound[] sounds;
     public Text coinText;
     public Text scoreText;
@@ -22,9 +23,7 @@ public class GameManager : MonoBehaviour {
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
-
         }
-
     }
 
     private void Start()
@@ -38,6 +37,8 @@ public class GameManager : MonoBehaviour {
         EventManager.StartListening("FlamethrowerShoot", FlamethrowerShootSound);
         EventManager.StartListening("SlimeDied", SlimeDied);
         EventManager.StartListening("GameOver", GameOver);
+        EventManager.StartListening("DamageButtonPressed", DamageButtonPressed);
+        EventManager.StartListening("LifePointsButtonPressed", LifePointsButtonPressed);
     }
 
     void OnDisable()
@@ -46,6 +47,27 @@ public class GameManager : MonoBehaviour {
         EventManager.StopListening("FlamethrowerShoot", FlamethrowerShootSound);
         EventManager.StopListening("SlimeDied", SlimeDied);
         EventManager.StopListening("GameOver", GameOver);
+        EventManager.StopListening("DamageButtonPressed", DamageButtonPressed);
+        EventManager.StopListening("LifePointsButtonPressed", LifePointsButtonPressed);
+    }
+
+    public void DamageButtonPressed()
+    {
+        if(coin >= upgradePrice)
+        {
+            coin -= upgradePrice;
+            EventManager.TriggerEvent("UpgradeDamage");
+            coinText.text = "" + coin;
+        }
+    }
+    public void LifePointsButtonPressed()
+    {
+        if (coin >= upgradePrice)
+        {
+            coin -= upgradePrice;
+            EventManager.TriggerEvent("UpgradeLifePoints");
+            coinText.text = "" + coin;
+        }
     }
 
     public void Play(string name)

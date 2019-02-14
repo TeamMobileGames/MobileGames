@@ -43,6 +43,7 @@ public class Spawn : MonoBehaviour
         spawnRotation.eulerAngles = new Vector2(0.0f, 0.0f);
         if (spawnPosition != Vector2.zero)
         {
+
             Instantiate(monster, spawnPosition, spawnRotation);
         }
     }

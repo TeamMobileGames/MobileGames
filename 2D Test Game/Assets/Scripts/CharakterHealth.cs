@@ -16,16 +16,26 @@ public class CharakterHealth : MonoBehaviour {
     void OnEnable()
     {
         EventManager.StartListening("HeartPicked", Heal);
+        EventManager.StartListening("UpgradeLifePoints", UpgradeLifePoints);
     }
 
     void OnDisable()
     {
         EventManager.StopListening("HeartPicked", Heal);
+        EventManager.StopListening("UpgradeLifePoints", UpgradeLifePoints);
     }
 
-    void Start () {
+    void Start()
+    {
         startHealth = health;
-	}
+    }
+
+    void UpgradeLifePoints()
+    {
+        health += 10;
+        startHealth += 10;
+        healthBar.fillAmount = health / startHealth;
+    }
 
     void Heal()
     {

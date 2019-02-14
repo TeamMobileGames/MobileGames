@@ -15,6 +15,7 @@ public class moveByTouch : MonoBehaviour {
     public Animator animatorGun;
 
     private float timeTillNextShoot;
+    private float damage = 1.0f;
 
     private float horizontalMove = 0f;
     private float verticalMove = 0f;
@@ -66,8 +67,23 @@ public class moveByTouch : MonoBehaviour {
         westnorth1 = Animator.StringToHash(charakter + "_westnorth");
 
     }
-	
-	void Update () {
+
+    void OnEnable()
+    {
+        EventManager.StartListening("UpgradeDamage", UpgradeDamage);
+    }
+
+    void OnDisable()
+    {
+        EventManager.StopListening("UpgradeDamage", UpgradeDamage);
+    }
+
+    void UpgradeDamage()
+    {
+        damage += 0.5f;
+    }
+
+    void Update () {
 
         timeTillNextShoot -= Time.deltaTime;
 
@@ -196,7 +212,7 @@ public class moveByTouch : MonoBehaviour {
         // Add velocity to the bullet
         //bulletClone.GetComponent<Rigidbody2D>().velocity = bulletClone.transform.forward * 6;
         bulletClone.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(x-0.1f, x+0.1f), Random.Range(y-0.1f, y+0.1f)) *3;
-
+        bulletClone.GetComponent<Bullet>().damage = damage;
         // Destroy the bullet after 2 seconds
         //Destroy(bulletClone, 2.0f);
     }
